@@ -1,4 +1,8 @@
 # Transformer From Scratch
+## 很久之前手搓了transformer，最近复习下，同时新增手搓的一个decoder的架构图加上之前的手搓代码，分享给大家！
+<img width="2926" height="9861" alt="Transformer_decoder" src="https://github.com/user-attachments/assets/bb9772b4-fb7c-4452-836d-cb04ab55e681" />
+
+
 
 使用 PyTorch 从零实现 Encoder–Decoder Transformer，并以英中翻译作为完整训练与推理任务。项目重点是把论文中的组件拆开实现、观察张量形状，并走通数据预处理、训练、评估和服务流程；分词器使用 Hugging Face Transformers 提供的预训练 tokenizer，模型主体由本项目代码实现。
 
