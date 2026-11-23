@@ -1,0 +1,169 @@
+<mxfile host="app.diagrams.net" agent="Trae" version="26.0.3">
+  <diagram name="Transformer翻译项目结构" id="project-structure">
+    <mxGraphModel dx="1400" dy="2000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ========== 根节点 ========== -->
+        <mxCell id="root" value="&lt;b style='font-size:16px'&gt;Transformer 翻译项目&lt;/b&gt;&lt;br&gt;&lt;span style='color:#CCCCCC'&gt;中 → 英翻译&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4B3FE3;strokeColor=#4B3FE3;fontColor=#FFFFFF;arcSize=20;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="850" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ========== main.py 入口 ========== -->
+        <mxCell id="main" value="&lt;b&gt;main.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;项目统一入口&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333'&gt;python main.py preprocess &amp;nbsp;# 预处理&lt;br&gt;python main.py train &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;# 训练&lt;br&gt;python main.py evaluate &amp;nbsp;# 评估&lt;br&gt;python main.py predict &amp;nbsp;&amp;nbsp;# 翻译&lt;br&gt;python main.py serve &amp;nbsp;&amp;nbsp;&amp;nbsp;# 启动服务&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FF9800;strokeWidth=2;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="960" width="200" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-root-main" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#FF9800;strokeWidth=1.5;dashed=1;endArrow=open;" edge="1" parent="1" source="root" target="main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== 分组节点 ========== -->
+        <mxCell id="g-data" value="&lt;b&gt;数据预处理&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;strokeWidth=2;fontColor=#1B5E20;fontStyle=1;fontSize=13;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g-model" value="&lt;b&gt;模型架构&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;fontColor=#0D47A1;fontStyle=1;fontSize=13;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="320" y="430" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g-runner" value="&lt;b&gt;训练与评估&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;strokeWidth=2;fontColor=#E65100;fontStyle=1;fontSize=13;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="320" y="820" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g-web" value="&lt;b&gt;Web 部署&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=2;fontColor=#4A148C;fontStyle=1;fontSize=13;arcSize=20;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1450" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- 根→分组 连线 -->
+        <mxCell id="e-root-data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4B3FE3;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="root" target="g-data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-model" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4B3FE3;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="root" target="g-model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-runner" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4B3FE3;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="root" target="g-runner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-root-web" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4B3FE3;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="root" target="g-web">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== 数据预处理 - 叶子节点 ========== -->
+        <mxCell id="l-preprocess" value="&lt;b style='color:#1B5E20'&gt;preprocess.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;下载 OPUS-100 → 双 Tokenizer → 编码保存&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; preprocess():&lt;br&gt;&amp;nbsp;&amp;nbsp;config = TransformerConfig()&lt;br&gt;&amp;nbsp;&amp;nbsp;raw = load_dataset(MODEL_DATA, 'en-zh')&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 双分词器&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;src_tok = AutoTokenizer.from_pretrained(&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'google-bert/bert-base-chinese')&lt;br&gt;&amp;nbsp;&amp;nbsp;tgt_tok = AutoTokenizer.from_pretrained(&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'google-bert/bert-base-uncased')&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 批量编码&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;processed = raw.map(encode, batched=True)&lt;br&gt;&amp;nbsp;&amp;nbsp;processed.save_to_disk(PROCESSED_DATA_DIR)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#43A047;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="30" width="400" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-dataset" value="&lt;b style='color:#1B5E20'&gt;dataset.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;加载 → 填充对齐 → 批处理&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; collate_batch(batch, pad_id=0):&lt;br&gt;&amp;nbsp;&amp;nbsp;src_list = [item['src_ids'] &lt;font color='#1565C0'&gt;for&lt;/font&gt; item &lt;font color='#1565C0'&gt;in&lt;/font&gt; batch]&lt;br&gt;&amp;nbsp;&amp;nbsp;src_max = max(len(s) &lt;font color='#1565C0'&gt;for&lt;/font&gt; s &lt;font color='#1565C0'&gt;in&lt;/font&gt; src_list)&lt;br&gt;&amp;nbsp;&amp;nbsp;src_padded = [s + [pad_id] * (src_max - len(s))&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;for&lt;/font&gt; s &lt;font color='#1565C0'&gt;in&lt;/font&gt; src_list]&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; {'src': torch.tensor(src_padded)}&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; get_dataloader(ds_type, batch_size, pad_id):&lt;br&gt;&amp;nbsp;&amp;nbsp;dataset = load_from_disk(path)&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; DataLoader(dataset, collate_fn=collate_fn)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#43A047;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="240" width="400" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-data-pre" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#43A047;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-data" target="l-preprocess">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-data-ds" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#43A047;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-data" target="l-dataset">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== 模型架构 - 叶子节点 ========== -->
+        <mxCell id="l-config" value="&lt;b style='color:#0D47A1'&gt;config.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;超参数配置 &amp; 路径定义&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;@dataclass&lt;br&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; TransformerConfig:&lt;br&gt;&amp;nbsp;&amp;nbsp;src_vocab_size: &lt;font color='#C62828'&gt;21128&lt;/font&gt; &amp;nbsp;# 中文词表&lt;br&gt;&amp;nbsp;&amp;nbsp;tgt_vocab_size: &lt;font color='#C62828'&gt;30522&lt;/font&gt; &amp;nbsp;# 英文词表&lt;br&gt;&amp;nbsp;&amp;nbsp;d_model=&lt;font color='#C62828'&gt;256&lt;/font&gt;, num_heads=&lt;font color='#C62828'&gt;4&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;num_encoder_layers=&lt;font color='#C62828'&gt;4&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;num_decoder_layers=&lt;font color='#C62828'&gt;4&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;d_ff=&lt;font color='#C62828'&gt;1024&lt;/font&gt;, dropout=&lt;font color='#C62828'&gt;0.1&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;lr=&lt;font color='#C62828'&gt;0.001&lt;/font&gt;, batch_size=&lt;font color='#C62828'&gt;32&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;warmup_steps=&lt;font color='#C62828'&gt;500&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;early_stopping_patience=&lt;font color='#C62828'&gt;8&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#1976D2;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="370" width="400" height="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-model" value="&lt;b style='color:#0D47A1'&gt;model.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;Transformer 架构：Encoder + Decoder + Generator&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; EncoderDecoder(nn.Module):&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; forward(src, tgt, src_mask, tgt_mask):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; self.decode(&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;self.encode(src, src_mask), ...)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# encode: src[B,S] → embed → encoder → memory[B,S,D]&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# decode: tgt[B,T] → embed → decoder → hidden[B,T,D]&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; Generator(nn.Module):&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; forward(x): &lt;font color='#C62828'&gt;# [B,T,D] → [B,T,V]&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; log_softmax(self.proj(x), dim=-1)&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; build_model(config):&lt;br&gt;&amp;nbsp;&amp;nbsp;model = EncoderDecoder(Encoder(...), Decoder(...), ...)&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# Xavier 初始化所有权重&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;for&lt;/font&gt; p &lt;font color='#1565C0'&gt;in&lt;/font&gt; model.parameters():&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;nn.init.xavier_uniform_(p)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#1976D2;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="600" width="400" height="280" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-model-cfg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#1976D2;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-model" target="l-config">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-model-mdl" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#1976D2;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-model" target="l-model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== 训练评估 - 叶子节点 ========== -->
+        <mxCell id="l-training" value="&lt;b style='color:#E65100'&gt;training.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;训练循环 · 早停 · Warmup 调度器 · 检查点&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; Batch:&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# tgt 右移一位作为标签&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;self.tgt = tgt[:, :-1]&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 输入&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;self.tgt_y = tgt[:, 1:]&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 标签&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;self.tgt_mask = make_decoder_mask(self.tgt)&lt;br&gt;&amp;nbsp;&amp;nbsp;self.ntokens = (self.tgt_y != pad_id).sum()&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; Trainer:&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; _train_one_step(batch):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;optimizer.zero_grad()&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;out = model(src, tgt, src_mask, tgt_mask)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;out = model.generator(out)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;loss = loss_fn(out.reshape(-1, V), tgt_y.reshape(-1))&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;scaler.scale(loss).backward()&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;scaler.step(optimizer)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;scheduler.step()&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; _should_early_stop(val_loss):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;if&lt;/font&gt; val_loss &amp;lt; best: save models.pt; &lt;font color='#1565C0'&gt;return&lt;/font&gt; False&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;else&lt;/font&gt;: counter++; &lt;font color='#1565C0'&gt;return&lt;/font&gt; counter &amp;gt;= patience&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; _save_checkpoint(epoch):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;torch.save({model, optimizer, scheduler, epoch, step}, ckpt)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# Warmup: lr 线性增长到峰值，再按 1/√step 衰减&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; lr_lambda(step):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;if&lt;/font&gt; step &amp;lt; warmup_steps: &lt;font color='#1565C0'&gt;return&lt;/font&gt; step / warmup_steps&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;else&lt;/font&gt;: &lt;font color='#1565C0'&gt;return&lt;/font&gt; warmup_steps ** 0.5 / step ** 0.5&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#F57C00;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="770" width="400" height="400" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-evaluate" value="&lt;b style='color:#E65100'&gt;evaluate.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;BLEU 评估 + 翻译样例展示&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; evaluate_model(model, dataloader, ...):&lt;br&gt;&amp;nbsp;&amp;nbsp;model.eval()&lt;br&gt;&amp;nbsp;&amp;nbsp;predictor = Predictor(model, src_tok, tgt_tok, device)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;for&lt;/font&gt; batch &lt;font color='#1565C0'&gt;in&lt;/font&gt; dataloader:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;src, tgt = batch['src'], batch['tgt']&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;src_mask = make_padding_mask(src, pad_id)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;with&lt;/font&gt; torch.no_grad():&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 逐条贪心解码&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;for&lt;/font&gt; i &lt;font color='#1565C0'&gt;in&lt;/font&gt; range(src.size(0)):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;output_ids = predictor._greedy_decode(&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;src[i:i+1], src_mask[i:i+1])&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;hyp = tgt_tokenizer.decode(output_ids)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ref = tgt_tokenizer.decode(tgt[i])&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;all_hypotheses.append(hyp)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;all_references.append(ref)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 计算 BLEU 分数&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;bleu = corpus_bleu(all_hypotheses, [all_references])&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; {'bleu': bleu.score, 'loss': loss}&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#F57C00;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1190" width="400" height="310" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-predict" value="&lt;b style='color:#E65100'&gt;predict.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;贪心解码推理&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; Predictor:&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;def&lt;/font&gt; _greedy_decode(self, src, src_mask, max_len=100):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 1. Encoder 只跑一次，获取 memory&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;memory = model.encode(src, src_mask)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 2. 初始化 ys = [BOS]&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ys = torch.ones(1, 1).fill_(self.bos_id)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;for&lt;/font&gt; i &lt;font color='#1565C0'&gt;in&lt;/font&gt; range(max_len - 1):&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 3. 生成 causal mask&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;tgt_mask = make_decoder_mask(ys, pad_id)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 4. Decoder + Generator&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;out = model.decode(memory, src_mask, ys, tgt_mask)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;out = model.generator(out[:, -1])&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 5. 取概率最高的词&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;_, next_word = out.max(dim=-1)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 6. 拼接到 ys&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;ys = torch.cat([ys, next_word.unsqueeze(-1)], dim=1)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#C62828'&gt;# 7. 生成 EOS 就停止&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;if&lt;/font&gt; next_word.item() == self.eos_id:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;break&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; ys.squeeze(0).tolist()&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#F57C00;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1520" width="400" height="310" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-runner-tr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F57C00;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-runner" target="l-training">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-runner-ev" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F57C00;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-runner" target="l-evaluate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-runner-pr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F57C00;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-runner" target="l-predict">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== Web 部署 - 叶子节点 ========== -->
+        <mxCell id="l-app" value="&lt;b style='color:#4A148C'&gt;app.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;FastAPI 应用入口&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;app = FastAPI(title='中英翻译API')&lt;br&gt;app.include_router(predict_router)&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; run_app():&lt;br&gt;&amp;nbsp;&amp;nbsp;uvicorn.run('web.app:app',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;host='0.0.0.0', port=9001, reload=True)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#7B1FA2;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1440" width="400" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-service" value="&lt;b style='color:#4A148C'&gt;service.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;模型加载 &amp; 预测服务&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#C62828'&gt;# 启动时加载一次（模块级别）&lt;/font&gt;&lt;br&gt;config = TransformerConfig()&lt;br&gt;model = build_model(config)&lt;br&gt;model.load_state_dict(torch.load(&lt;br&gt;&amp;nbsp;&amp;nbsp;MODELS_DIR / BEST_MODEL, ...))&lt;br&gt;model.eval()&lt;br&gt;src_tok = AutoTokenizer.from_pretrained(...)&lt;br&gt;tgt_tok = AutoTokenizer.from_pretrained(...)&lt;br&gt;predictor = Predictor(model, src_tok, tgt_tok, device)&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; predict_service(text):&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; predictor.predict(text)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#7B1FA2;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1570" width="400" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-routers" value="&lt;b style='color:#4A148C'&gt;routers.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;API 路由定义&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;predict_router = APIRouter(tags=['translationapi'])&lt;br&gt;&lt;br&gt;@predict_router.post('/predict')&lt;br&gt;&lt;font color='#1565C0'&gt;def&lt;/font&gt; predict(request: PredictRequest) -&amp;gt; PredictResponse:&lt;br&gt;&amp;nbsp;&amp;nbsp;text = request.text.strip()&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;if&lt;/font&gt; not text:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;raise&lt;/font&gt; HTTPException(400, '输入文本不能为空')&lt;br&gt;&amp;nbsp;&amp;nbsp;tgt = predict_service(text)&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;font color='#1565C0'&gt;return&lt;/font&gt; PredictResponse(src=text, tgt=tgt)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#7B1FA2;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1770" width="400" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l-schema" value="&lt;b style='color:#4A148C'&gt;schema.py&lt;/b&gt;&lt;br&gt;&lt;span style='color:#888;font-size:10px'&gt;Pydantic 请求/响应模型&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0;border-top:1px solid #ddd;margin:4px 0'&gt;&lt;div style='font-family:Courier New;font-size:10px;color:#333;line-height:1.5'&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; PredictRequest(BaseModel):&lt;br&gt;&amp;nbsp;&amp;nbsp;text: str = Field(&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;examples=['你好世界'])&lt;br&gt;&lt;br&gt;&lt;font color='#1565C0'&gt;class&lt;/font&gt; PredictResponse(BaseModel):&lt;br&gt;&amp;nbsp;&amp;nbsp;src: str &amp;nbsp;&lt;font color='#C62828'&gt;# 原始中文&lt;/font&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;tgt: str &amp;nbsp;&lt;font color='#C62828'&gt;# 翻译英文&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#7B1FA2;strokeWidth=1.5;arcSize=8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1950" width="400" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-web-app" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#7B1FA2;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-web" target="l-app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-web-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#7B1FA2;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-web" target="l-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-web-rt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#7B1FA2;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-web" target="l-routers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-web-sc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#7B1FA2;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="g-web" target="l-schema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========== 数据流标注 ========== -->
+        <mxCell id="flow-label" value="&lt;b style='font-size:12px'&gt;数据流&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;color:#666'&gt;原始文本 → Tokenizer → Dataset → Encoder+Decoder → Training → BLEU评估 → FastAPI → 翻译结果&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1100" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ========== 图例 ========== -->
+        <mxCell id="legend" value="&lt;b&gt;图例&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;arcSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1180" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-root" value="核心项目" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4B3FE3;strokeColor=#4B3FE3;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="55" y="1210" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-data" value="数据预处理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;fontSize=10;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="145" y="1210" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-model" value="模型架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=10;fontColor=#0D47A1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="1244" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-runner" value="训练评估" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;fontSize=10;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="145" y="1244" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-web" value="Web部署" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontSize=10;fontColor=#4A148C;" vertex="1" parent="1">
+          <mxGeometry x="55" y="1278" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-entry" value="入口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FF9800;fontSize=10;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="145" y="1278" width="80" height="24" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
